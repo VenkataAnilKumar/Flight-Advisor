@@ -68,3 +68,64 @@ Now it is the time to open **terminal** or **git bash** command line, and then c
 ```bash
 > git clone https://github.com/VenkataAnilKumar/Flight-Advisor.git
 ```
+### Using an IDE
+I recommend that you work with your Java code using an IDE that supports the development of Spring Boot applications such as **Spring Tool Suite** or **IntelliJ IDEA Community | Ultimate Edition**. 
+
+All you have to do is fire up your favorite IDE **->** open or import the parent folder `Flight-Advisor,` and everything will be ready for you.
+
+### Building & Running The System
+To build and run the system, run the following command:
+
+```bash
+?? [mtaman]:Flight-Advisor ~~ ./mvnw clean package
+```
+Now you should expect output like this:
+```JavaScript
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- maven-jar-plugin:3.2.0:jar (default-jar) @ flight-advisor ---
+[INFO] Building jar: /Flight-Advisor/target/flight-advisor-1.0.jar
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.4.0:repackage (repackage) @ flight-advisor ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  14.620 s
+[INFO] Finished at: 2023-11-15T13:40:50+01:00
+[INFO] -----------------------------------------------------------------------
+```
+#### Running the System
+Now it's the time to run the system, and it's straightforward, just hit the following commands:
+
+```bash
+?? [mtaman]:Flight-Advisor ~~ java --enable-preview -jar ./target/*.jar \ 
+?? [mtaman]:Flight-Advisor ~+ --spring.profiles.active=prod
+```
+Or
+```bash
+ ?? [mtaman]:Flight-Advisor ~~ ./mvnw spring-boot:run \
+ ?? [mtaman]:Flight-Advisor ~+ -Dspring-boot.run.jvmArguments="--enable-preview" \
+ ?? [mtaman]:Flight-Advisor ~+ -Dspring-boot.run.arguments="--spring.profiles.active=prod"
+```
+**Flight Advisor System** will run, with embedded H2 **database** that will be created under `db` folder and then the `flightDB.mv.db` file, and you should expect an output like this:
+
+```javascript
+2023-11-15 13:56:16.587  INFO 2981 --- [  restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration: 
+H2 console available at '/db-console'. 
+Database available at 'jdbc:h2:./db/flightDB'
+
+2023-11-15 13:56:18.081  INFO 2981 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer: 
+Tomcat started on port(s): 8090 (http) with 
+context path '/flight/service/api'
+
+2023-11-15 13:56:18.581  INFO 2981 --- [  restartedMain] o.s.h.f.F.AppStartupRunner: 
+Congratulations, Flight Advisor Application, is Up & Running :)
+```
+### Access Flight Advisor System APIs
+You can play and test `Flight Advisor` APIs throughout its **OpenAPI** interface. 
+1. Go to the landing page at the following URL [http://localhost:8090/flight/service/api/](http://localhost:8090/flight/service/api/).
+2. follow the link on the page, and you should see the following:
+
+![System APIs](docs/images/SystemAPI.png)
