@@ -129,3 +129,75 @@ You can play and test `Flight Advisor` APIs throughout its **OpenAPI** interface
 2. follow the link on the page, and you should see the following:
 
 ![System APIs](docs/images/SystemAPI.png)
+#### System Behaviour
+1. First, if you want to upload airports or routes (in the data folder) using the **Files upload Management** section: 
+     1. You need to login with the provided admin username/password to the `public/login` endpoint.
+     2. On a successful login, the response will contain an authorization token; copy it.
+     3. Click on the Authorize button and past it in the only field out there, `value,` then click the `Authorize` button.
+     4. Now, all locks are closed, and you can use the secured APIs.
+2. If you are a new client and want to access the system, you need first to register through the `/public/register` endpoint. Then follow previous point **1.1**.
+3. When uploading the Airports file, countries and cities will be created automatically.
+4. All search parameters are case insensitive, and the system use like search by default.
+5. To add a city, you need a country, so from the **country management** section, you can search for the country you want.
+6. To manage comments, you need a city, so from the **city management** section, you can get all cities or search for a specific city.
+7. You can search for all airports for a specific city to know their codes so you can use travel service.
+8. Use travel service to search for the cheapest flight from city to city, for example traveling from **CAI** (*Cairo International Airport, Egypt*) to **LAX** (*Los Angeles, USA*) the following results will be returned:
+
+```JSON
+[
+  {
+    "start": {
+      "airport": "Cairo International Airport",
+      "city": "Cairo",
+      "country": "Egypt",
+      "iata": "CAI"
+    },
+    "through": [
+      {
+        "airport": "Lester B. Pearson International Airport",
+        "city": "Toronto",
+        "country": "Canada",
+        "iata": "YYZ"
+      }
+    ],
+    "end": {
+      "airport": "Los Angeles International Airport",
+      "city": "Los Angeles",
+      "country": "United States",
+      "iata": "LAX"
+    },
+    "price": {
+      "total": 62.17,
+      "currency": "US"
+    },
+    "distance": {
+      "total": 12722.2,
+      "in": "KM"
+    }
+  }
+]
+```
+
+### Access Flight Advisor System Database
+You can access database through it online console from the following URL [http://localhost:8090/flight/service/api/db-console/](http://localhost:8090/flight/service/api/db-console/) with the following properties:
+- Driver class: `org.h2.Driver`
+- JDBC URL: `jdbc:h2:./db/flightDB`
+- user: `sa`
+- password: `Admin1234`
+
+![System DB](docs/images/SystemDB.png)
+
+Hit test, and it should show a green bar for successful settings. So hit the **Connect** button and explore all data.
+
+### Stopping The System
+Just press the `CTRL+C` keys on the terminal.
+
+### Closing The Story
+
+Finally, I hope you enjoyed the application and find it useful. If you would like to enhance, please open **PR**, and yet give it a ??.
+
+## The End
+Happy Coding ?? 
+
+## License
+Copyright (C) 2023 Venkata Anil Kumar, Licensed under the **MIT License**.
