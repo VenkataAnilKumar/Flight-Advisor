@@ -5,10 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.context.annotation.Import;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.siriusxi.htec.fa.infra.security.JwtTokenFilter;
 import org.siriusxi.htec.fa.repository.UserRepository;
-import org.siriusxi.htec.fa.config.TestDatabaseConfig;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -19,14 +19,17 @@ import org.siriusxi.htec.fa.api.InfoController;
 
 @WebMvcTest(controllers = InfoController.class)
 @ActiveProfiles("test")
-@Import(TestDatabaseConfig.class)
+@TestPropertySource(properties = {
+    "app.version=v1",
+    "spring.security.user.name=test",
+    "spring.security.user.password=test"
+})
 public class InfoControllerTests {
 
     @Autowired
     private MockMvc mvc;
 
-    // Security filter and repository are part of the application context in other tests;
-    // mock them here so WebMvcTest loads only the controller under test.
+    // Mock security components to avoid complex setup
     @MockBean
     private JwtTokenFilter jwtTokenFilter;
 
@@ -34,6 +37,7 @@ public class InfoControllerTests {
     private UserRepository userRepository;
 
     @Test
+    @WithMockUser
     void infoVersionReturnsVersionAndUptime() throws Exception {
         mvc.perform(get("/v1/info/version"))
             .andExpect(status().isOk())

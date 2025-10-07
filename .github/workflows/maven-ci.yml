@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     
     steps:
       - name: Checkout code
@@ -35,10 +36,16 @@ jobs:
         run: ./mvnw -B clean
         
       - name: Compile application
-        run: ./mvnw -B compile
+        run: ./mvnw -B compile test-compile
         
-      - name: Run tests with explicit profile
-        run: ./mvnw -B test -Dspring.profiles.active=test -Dmaven.test.failure.ignore=false
+      - name: Run tests with timeout
+        run: |
+          timeout 300 ./mvnw -B test \
+            -Dspring.profiles.active=test \
+            -Dmaven.test.failure.ignore=false \
+            -DforkCount=1 \
+            -DreuseForks=false \
+            -Djava.awt.headless=true
         env:
           SPRING_PROFILES_ACTIVE: test
           
@@ -46,5 +53,5 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
+          name: test-results-ci
           path: target/surefire-reports/

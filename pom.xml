@@ -287,6 +287,19 @@
                         <include>**/*Tests.java</include>
                         <include>**/*Test.java</include>
                     </includes>
+                    <forkCount>1</forkCount>
+                    <reuseForks>false</reuseForks>
+                    <useSystemClassLoader>false</useSystemClassLoader>
+                    <trimStackTrace>false</trimStackTrace>
+                    <systemPropertyVariables>
+                        <spring.profiles.active>test</spring.profiles.active>
+                    </systemPropertyVariables>
+                    <argLine>
+                        -Xmx1024m
+                        -Dspring.profiles.active=test
+                        -Djava.awt.headless=true
+                        -Dfile.encoding=UTF-8
+                    </argLine>
                 </configuration>
             </plugin>
             <plugin>

@@ -10,6 +10,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     
     steps:
       - name: Checkout code
@@ -32,22 +33,30 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-m2-
             
-      - name: Clean workspace
+      - name: Clean workspace and remove database files
         run: |
           ./mvnw -B clean
-          rm -rf db/*.db db/*.trace.db || true
+          rm -rf db/*.db db/*.trace.db logs/* || true
           
       - name: Compile project
         run: ./mvnw -B compile test-compile
         
-      - name: Run unit tests
+      - name: List test files
+        run: find src/test -name "*.java" -type f
+        
+      - name: Run unit tests with timeout and proper configuration
         run: |
-          ./mvnw -B test \
+          timeout 600 ./mvnw -B test \
             -Dspring.profiles.active=test \
             -Dmaven.test.failure.ignore=false \
-            -Dsurefire.rerunFailingTestsCount=2
+            -DforkCount=1 \
+            -DreuseForks=false \
+            -Djava.awt.headless=true \
+            -Dspring.main.banner-mode=off \
+            -Xmx512m
         env:
           SPRING_PROFILES_ACTIVE: test
+          MAVEN_OPTS: "-Xmx512m"
           
       - name: Upload test reports
         if: always()

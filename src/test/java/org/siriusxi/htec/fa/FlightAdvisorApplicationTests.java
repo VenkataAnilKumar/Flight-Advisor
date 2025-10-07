@@ -3,12 +3,18 @@ package org.siriusxi.htec.fa;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.context.annotation.Import;
-import org.siriusxi.htec.fa.config.TestDatabaseConfig;
+import org.springframework.test.context.TestPropertySource;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest(
+    webEnvironment = SpringBootTest.WebEnvironment.NONE,
+    properties = {
+        "spring.main.banner-mode=off",
+        "logging.level.org.springframework=WARN",
+        "logging.level.org.hibernate=WARN"
+    }
+)
 @ActiveProfiles("test")
-@Import(TestDatabaseConfig.class)
+@TestPropertySource(locations = "classpath:application-test.yaml")
 class FlightAdvisorApplicationTests {
 
 	@Test
