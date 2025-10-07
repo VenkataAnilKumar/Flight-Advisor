@@ -48,6 +48,7 @@ jobs:
             -Djava.awt.headless=true
         env:
           SPRING_PROFILES_ACTIVE: test
+          MAVEN_OPTS: "-Xmx512m -Djava.awt.headless=true"
           
       - name: Upload test results
         if: always()

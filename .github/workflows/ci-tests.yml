@@ -52,11 +52,10 @@ jobs:
             -DforkCount=1 \
             -DreuseForks=false \
             -Djava.awt.headless=true \
-            -Dspring.main.banner-mode=off \
-            -Xmx512m
+            -Dspring.main.banner-mode=off
         env:
           SPRING_PROFILES_ACTIVE: test
-          MAVEN_OPTS: "-Xmx512m"
+          MAVEN_OPTS: "-Xmx512m -Djava.awt.headless=true"
           
       - name: Upload test reports
         if: always()
