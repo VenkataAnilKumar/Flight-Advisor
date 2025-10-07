@@ -5,9 +5,9 @@ import org.siriusxi.htec.fa.domain.model.RoutePK;
 import org.siriusxi.htec.fa.domain.model.vo.RouteView;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -37,9 +37,9 @@ public interface RouteRepository extends CrudRepository<Route, RoutePK> {
  
     @CacheEvict(key = "#p0.routePK.source + #p0.routePK.destination")
     @Override
-    <S extends Route> S save(S s);
+    @NonNull <S extends Route> S save(@NonNull S s);
     
     @CacheEvict(allEntries = true)
     @Override
-    <S extends Route> Iterable<S> saveAll(Iterable<S> iterable);
+    @NonNull <S extends Route> Iterable<S> saveAll(@NonNull Iterable<S> iterable);
 }

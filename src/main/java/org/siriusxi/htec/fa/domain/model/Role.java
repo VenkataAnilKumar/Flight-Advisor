@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import java.io.Serial;
 
 @Entity
-@Table(name = "AUTHORITY", catalog = "FLIGHTDB", schema = "PUBLIC")
+@Table(name = "AUTHORITY")
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor

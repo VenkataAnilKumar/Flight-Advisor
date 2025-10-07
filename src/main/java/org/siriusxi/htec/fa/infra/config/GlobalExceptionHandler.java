@@ -89,6 +89,7 @@ public class GlobalExceptionHandler {
     }
     
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    @SuppressWarnings("null")
     public ResponseEntity<ApiCallError<Map<String, String>>>
     handleMethodArgumentTypeMismatchException(HttpServletRequest request,
                                               MethodArgumentTypeMismatchException ex) {

@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.siriusxi.htec.fa.infra.security.jwt.JwtTokenHelper;
 import org.siriusxi.htec.fa.repository.UserRepository;
 import org.springframework.http.HttpHeaders;
+import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -31,9 +32,9 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     }
     
     @Override
-    protected void doFilterInternal(HttpServletRequest request,
-                                    HttpServletResponse response,
-                                    FilterChain chain) throws ServletException, IOException {
+    protected void doFilterInternal(@NonNull HttpServletRequest request,
+                                    @NonNull HttpServletResponse response,
+                                    @NonNull FilterChain chain) throws ServletException, IOException {
         
         // Get authorization header and validate
         var authToken = getJwtTokenIfValid(request

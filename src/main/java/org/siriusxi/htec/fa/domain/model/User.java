@@ -5,7 +5,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.*;
 import java.io.Serial;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,8 +21,7 @@ import static jakarta.persistence.FetchType.LAZY;
  */
 @Entity
 @Table(
-    catalog = "FLIGHTDB",
-    schema = "PUBLIC",
+    name = "\"user\"",
     uniqueConstraints = {
         @UniqueConstraint(columnNames = {"USER_UUID"}),
         @UniqueConstraint(columnNames = {"USERNAME"})
@@ -32,7 +30,7 @@ import static jakarta.persistence.FetchType.LAZY;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @ToString(exclude = {"userUuid", "username", "password", "comments", "enabled"})
-public class User implements UserDetails, Serializable {
+public class User implements UserDetails {
     
     public User(Integer id) {
         this.id = id;

@@ -7,6 +7,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,16 +18,16 @@ import java.util.Optional;
 public interface UserRepository extends CrudRepository<User, Integer> {
     
     @CacheEvict(allEntries = true)
-    <S extends User> List<S> saveAll(Iterable<S> entities);
+    @NonNull <S extends User> List<S> saveAll(@NonNull Iterable<S> entities);
     
     @Caching(evict = {
         @CacheEvict(key = "#p0.id"),
         @CacheEvict(key = "#p0.username")
     })
-    <S extends User> S save(S entity);
+    @NonNull <S extends User> S save(@NonNull S entity);
     
     @Cacheable
-    Optional<User> findById(Integer id);
+    @NonNull Optional<User> findById(@NonNull Integer id);
     
     @Cacheable
     default User getById(Integer id) {

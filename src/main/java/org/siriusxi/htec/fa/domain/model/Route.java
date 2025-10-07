@@ -16,7 +16,7 @@ import static jakarta.persistence.FetchType.*;
  * @version 1.0
  **/
 @Entity
-@Table(catalog = "FLIGHTDB", schema = "PUBLIC")
+@Table
 @Data
 @NoArgsConstructor
 public class Route implements Serializable {

@@ -6,6 +6,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,5 +24,5 @@ public interface AirportRepository extends CrudRepository<Airport, Integer> {
     
     @Cacheable
     @Override
-    Optional<Airport> findById(Integer integer);
+    @NonNull Optional<Airport> findById(@NonNull Integer integer);
 }

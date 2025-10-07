@@ -117,6 +117,7 @@ public class SecurityConfig {
                 // Our public endpoints
                 .requestMatchers("/public/**").permitAll()
                 // Allow the version/info endpoint to be public so health/version checks don't require auth
+                .requestMatchers("/v1/info/**").permitAll()
                 .requestMatchers(appVersion.concat("/info/**")).permitAll()
                 //Our private endpoints
                 .anyRequest().authenticated())

@@ -4,8 +4,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import jakarta.persistence.*;
 import java.io.Serial;
@@ -13,7 +11,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import static java.time.LocalDateTime.*;
-import static jakarta.persistence.FetchType.EAGER;
 import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -22,7 +19,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
  * @version 1.0
  **/
 @Entity
-@Table(name = "CITY_COMMENT", catalog = "FLIGHTDB", schema = "PUBLIC")
+@Table(name = "CITY_COMMENT")
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
