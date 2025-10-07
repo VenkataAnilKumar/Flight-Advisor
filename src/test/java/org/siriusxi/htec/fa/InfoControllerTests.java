@@ -22,7 +22,10 @@ import org.siriusxi.htec.fa.api.InfoController;
 @TestPropertySource(properties = {
     "app.version=v1",
     "spring.security.user.name=test",
-    "spring.security.user.password=test"
+    "spring.security.user.password=test",
+    "logging.level.org.springframework=WARN",
+    "spring.datasource.url=jdbc:h2:mem:testdb",
+    "spring.flyway.enabled=false"
 })
 public class InfoControllerTests {
 

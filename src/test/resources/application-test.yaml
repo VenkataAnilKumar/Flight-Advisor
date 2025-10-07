@@ -67,23 +67,14 @@ management:
       enabled: true
       show-details: never
 
-# Minimal logging for tests
+# Unified logging configuration for tests
 logging:
   level:
     org:
       springframework: WARN
       hibernate: WARN
-      siriusxi: WARN
+      siriusxi: INFO
     web: WARN
     root: WARN
-  pattern:
-    console: "%msg%n"
-
-# Logging configuration for tests
-logging:
-  level:
-    org.springframework.web: ERROR
-    org.hibernate: ERROR
-    org.siriusxi.htec.fa: INFO
   pattern:
     console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
