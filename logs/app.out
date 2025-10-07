@@ -1,0 +1,50 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v2.7.12)
+
+2025-10-06 21:03:14.060 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2025-10-06 21:03:14.210 INFO  o.s.htec.fa.FlightAdvisorApplication - Starting FlightAdvisorApplication v1.0 using Java 17.0.16 on LAPTOP-I6LACHM5 with PID 20056 (E:\Desktop\GitHub\Flight-Advisor\target\flight-advisor-1.0.jar started by Venkata Anil Kumar in E:\Desktop\GitHub\Flight-Advisor)
+2025-10-06 21:03:14.210 INFO  o.s.htec.fa.FlightAdvisorApplication - The following 1 profile is active: "prod"
+2025-10-06 21:03:18.074 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-06 21:03:18.594 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 358 ms. Found 6 JPA repository interfaces.
+2025-10-06 21:03:19.936 INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'mvcConfig' of type [org.siriusxi.htec.fa.infra.config.MvcConfig$$EnhancerBySpringCGLIB$$ac0fbe7f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-10-06 21:03:19.981 INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'grantedAuthorityDefaults' of type [org.springframework.security.config.core.GrantedAuthorityDefaults] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-10-06 21:03:21.508 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8090 (http)
+2025-10-06 21:03:21.565 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8090"]
+2025-10-06 21:03:21.602 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-06 21:03:21.602 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.75]
+2025-10-06 21:03:21.879 INFO  o.a.c.c.C.[.[.[/flight/service/api] - Initializing Spring embedded WebApplicationContext
+2025-10-06 21:03:21.884 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 7528 ms
+2025-10-06 21:03:22.476 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-06 21:03:23.301 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-06 21:03:23.348 INFO  o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/db-console'. Database available at 'jdbc:h2:./db/flightDB'
+2025-10-06 21:03:24.091 INFO  o.f.c.i.license.VersionPrinter - Flyway Community Edition 8.5.13 by Redgate
+2025-10-06 21:03:24.092 INFO  o.f.c.i.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.13
+2025-10-06 21:03:24.095 INFO  o.f.c.i.license.VersionPrinter - 
+2025-10-06 21:03:24.161 INFO  o.f.c.i.d.base.BaseDatabaseType - Database: jdbc:h2:./db/flightDB (H2 2.1)
+2025-10-06 21:03:24.251 WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: H2 2.1.214 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.1.210.
+2025-10-06 21:03:24.370 INFO  o.f.core.internal.command.DbValidate - Successfully validated 1 migration (execution time 00:00.072s)
+2025-10-06 21:03:24.384 INFO  o.f.core.internal.command.DbMigrate - Current version of schema "PUBLIC": 1
+2025-10-06 21:03:24.390 INFO  o.f.core.internal.command.DbMigrate - Schema "PUBLIC" is up to date. No migration necessary.
+2025-10-06 21:03:24.663 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-06 21:03:24.924 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+2025-10-06 21:03:25.928 INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-10-06 21:03:26.662 INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2025-10-06 21:03:29.778 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-10-06 21:03:29.808 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-06 21:03:33.793 INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure EndpointRequestMatcher includes=[*], excludes=[], includeLinks=true with [org.springframework.security.web.session.DisableEncodeUrlFilter@6f25bf88, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@42ea7565, org.springframework.security.web.context.SecurityContextPersistenceFilter@125d47c4, org.springframework.security.web.header.HeaderWriterFilter@7126e26, org.springframework.security.web.csrf.CsrfFilter@3dc40ab9, org.springframework.security.web.authentication.logout.LogoutFilter@53747c4a, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@77cb452c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@64b018f3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1c240cf2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7b5cc918, org.springframework.security.web.session.SessionManagementFilter@626d2016, org.springframework.security.web.access.ExceptionTranslationFilter@648c5fb3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3c770db4]
+2025-10-06 21:03:33.800 INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1b3ab4f9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5c6a5192, org.springframework.security.web.context.SecurityContextPersistenceFilter@44286963, org.springframework.security.web.header.HeaderWriterFilter@6048e26a, org.springframework.web.filter.CorsFilter@53d9826f, org.springframework.security.web.authentication.logout.LogoutFilter@35adf623, org.siriusxi.htec.fa.infra.security.JwtTokenFilter@30ec7d21, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@c8f97a7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2b736fee, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1c8f6c66, org.springframework.security.web.session.SessionManagementFilter@50b93353, org.springframework.security.web.access.ExceptionTranslationFilter@62a54948, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4a9a878]
+2025-10-06 21:03:34.475 INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-10-06 21:03:37.803 INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 14 endpoint(s) beneath base path '/actuator'
+2025-10-06 21:03:37.913 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8090"]
+2025-10-06 21:03:37.997 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8090 (http) with context path '/flight/service/api'
+2025-10-06 21:03:38.047 INFO  o.s.htec.fa.FlightAdvisorApplication - Started FlightAdvisorApplication in 25.712 seconds (JVM running for 27.127)
+2025-10-06 21:03:38.173 INFO  o.s.h.f.FlightAdvisorApplication$AppStartupRunner - Congratulations, Flight Advisor Application is Up & Running :) 
+2025-10-06 21:03:38.623 INFO  o.a.c.c.C.[.[.[/flight/service/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-06 21:03:38.625 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-10-06 21:03:38.630 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms

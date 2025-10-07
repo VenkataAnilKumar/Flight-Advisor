@@ -1,0 +1,40 @@
+name: CI Build & Docker
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-m2-
+      - name: Build and run tests
+        run: ./mvnw -B test
+      - name: Build jar
+        run: ./mvnw -B -DskipTests package
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ github.repository_owner }}/flight-advisor:ci-${{ github.run_id }} .
+      # To push the image, set up registry credentials in secrets (DOCKER_USERNAME & DOCKER_PASSWORD).
+      # The following steps will run only when those secrets are present.
+      - name: Log in to Docker registry
+        if: ${{ secrets.DOCKER_USERNAME && secrets.DOCKER_PASSWORD }}
+        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Push Docker image
+        if: ${{ secrets.DOCKER_USERNAME && secrets.DOCKER_PASSWORD }}
+        run: docker push ${{ github.repository_owner }}/flight-advisor:ci-${{ github.run_id }}

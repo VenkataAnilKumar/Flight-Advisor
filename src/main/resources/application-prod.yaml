@@ -1,0 +1,37 @@
+# Production profile - Updated October 6, 2025
+spring:
+  jmx:
+    enabled: false
+  # Database configurations
+  sql:
+    init:
+      data-locations: classpath*:db/prod/data.sql
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:h2:./db/flightDB}
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    # Don't hardcode a non-empty default password for the embedded H2 DB.
+    # When running in prod with a real DB, set SPRING_DATASOURCE_URL/USERNAME/PASSWORD.
+    # Locally, an empty default password lets the embedded H2 start without auth errors.
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        generate_statistics: false
+
+logging.level:
+  org:
+    hibernate:
+      SQL: info
+      type.descriptor.sql.BasicBinder: info
+    springframework:
+      cache: info
+      web: info
+    siriusxi:
+      htec:
+        fa: info
+  web: info
+  root: info

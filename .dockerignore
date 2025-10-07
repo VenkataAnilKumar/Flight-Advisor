@@ -1,0 +1,8 @@
+target/
+.mvn/
+.git/
+*.log
+*.tmp
+node_modules/
+Dockerfile
+docker-compose.yml
