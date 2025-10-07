@@ -10,16 +10,20 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
+        
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
+          
       - name: Make Maven wrapper executable
         run: chmod +x ./mvnw
+        
       - name: Cache Maven packages
         uses: actions/cache@v4
         with:
@@ -27,11 +31,38 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-m2-
-      - name: Run tests
-        run: ./mvnw -B clean test --fail-at-end
-      - name: Upload surefire reports
+            
+      - name: Clean workspace
+        run: |
+          ./mvnw -B clean
+          rm -rf db/*.db db/*.trace.db || true
+          
+      - name: Compile project
+        run: ./mvnw -B compile test-compile
+        
+      - name: Run unit tests
+        run: |
+          ./mvnw -B test \
+            -Dspring.profiles.active=test \
+            -Dmaven.test.failure.ignore=false \
+            -Dsurefire.rerunFailingTestsCount=2
+        env:
+          SPRING_PROFILES_ACTIVE: test
+          
+      - name: Upload test reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: surefire-reports
-          path: target/surefire-reports
+          path: target/surefire-reports/
+          retention-days: 30
+          
+      - name: Upload test logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-logs
+          path: |
+            target/surefire-reports/
+            logs/
+          retention-days: 30

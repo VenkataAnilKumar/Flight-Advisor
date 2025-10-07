@@ -1,28 +1,83 @@
-# Test-specific configuration
+# Test-specific configuration - Force in-memory database
 spring:
+  config:
+    activate:
+      on-profile: test
+  
+  application:
+    name: Flight-Advisor-Service-Test
+  
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL;TRACE_LEVEL_FILE=0;TRACE_LEVEL_SYSTEM_OUT=0
     username: sa
     password: ""
     driver-class-name: org.h2.Driver
+    hikari:
+      initialization-fail-timeout: 60000
+      connection-test-query: SELECT 1
+      maximum-pool-size: 5
+      auto-commit: true
+      leak-detection-threshold: 60000
   
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: create-drop
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: false
-    defer-datasource-initialization: true
+    defer-datasource-initialization: false
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        generate_statistics: false
+        format_sql: false
+        use_sql_comments: false
+        hbm2ddl:
+          auto: create-drop
   
   sql:
     init:
       mode: never  # Disable SQL initialization for tests
+      data-locations: ""  # Override main config
+      schema-locations: ""  # Override main config
   
   flyway:
     enabled: false  # Disable Flyway for tests
+    baseline-on-migrate: false
+    check-location: false
   
   h2:
     console:
       enabled: false  # Disable H2 console for tests
+
+# Override server config for tests
+server:
+  port: 0  # Random port for tests
+  servlet:
+    context-path: /
+
+# Disable management endpoints for tests
+management:
+  endpoints:
+    enabled-by-default: false
+  endpoint:
+    health:
+      enabled: true
+      show-details: never
+
+# Minimal logging for tests
+logging:
+  level:
+    org:
+      springframework: WARN
+      hibernate: WARN
+      siriusxi: WARN
+    web: WARN
+    root: WARN
+  pattern:
+    console: "%msg%n"
 
 # Logging configuration for tests
 logging:

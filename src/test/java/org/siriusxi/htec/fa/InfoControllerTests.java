@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.context.annotation.Import;
 import org.siriusxi.htec.fa.infra.security.JwtTokenFilter;
 import org.siriusxi.htec.fa.repository.UserRepository;
+import org.siriusxi.htec.fa.config.TestDatabaseConfig;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -17,6 +19,7 @@ import org.siriusxi.htec.fa.api.InfoController;
 
 @WebMvcTest(controllers = InfoController.class)
 @ActiveProfiles("test")
+@Import(TestDatabaseConfig.class)
 public class InfoControllerTests {
 
     @Autowired
