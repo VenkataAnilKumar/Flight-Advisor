@@ -2,13 +2,15 @@ package org.siriusxi.htec.fa;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
-// Disable Flyway for this test to avoid attempting to open the file-backed H2 DB
-@SpringBootTest(properties = "spring.flyway.enabled=false")
+@SpringBootTest
+@ActiveProfiles("test")
 class FlightAdvisorApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// This test verifies that the Spring application context loads successfully
 	}
 
 }

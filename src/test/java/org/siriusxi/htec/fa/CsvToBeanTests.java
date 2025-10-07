@@ -6,6 +6,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.ActiveProfiles;
 import org.siriusxi.htec.fa.domain.dto.upload.airport.AirportDto;
 import org.siriusxi.htec.fa.domain.dto.upload.airport.verifer.AirportBeanVerifier;
 import org.siriusxi.htec.fa.domain.dto.upload.route.RouteDto;
@@ -16,6 +17,7 @@ import java.io.Reader;
 import java.util.List;
 
 @Slf4j
+@ActiveProfiles("test")
 class CsvToBeanTests {
     
     @SneakyThrows
